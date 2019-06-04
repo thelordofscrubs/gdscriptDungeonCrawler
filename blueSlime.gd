@@ -8,6 +8,7 @@ var spritet = preload("res://blueSlimeSprite.gd")
 var sprite
 
 func _init(coord,f):
+	self.name = "blueSlime"
 	self.coordinates = coord
 	self.facing = f
 	self.sprite = spritet.new(coordinates)
@@ -20,3 +21,5 @@ func updatePos(change):
 func attack(playerCoords):
 	if playerCoords == coordinates:
 		return 5
+	else:
+		return null

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=8 format=2]
+[gd_resource type="TileSet" load_steps=11 format=2]
 
 [ext_resource path="res://blueSlimeSprite.png" type="Texture" id=1]
 [ext_resource path="res://charSprite.png" type="Texture" id=2]
@@ -7,9 +7,12 @@
 [ext_resource path="res://wall_proto.png" type="Texture" id=5]
 [ext_resource path="res://unlocked_door_proto.png" type="Texture" id=6]
 [ext_resource path="res://pot_proto.png" type="Texture" id=7]
+[ext_resource path="res://key_proto.png" type="Texture" id=8]
+[ext_resource path="res://locked_door_proto.png" type="Texture" id=9]
+[ext_resource path="res://openChest.png" type="Texture" id=10]
 
 [resource]
-0/name = "monster_blueSlime"
+0/name = "0monster_blueSlime"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -19,7 +22,7 @@
 0/navigation_offset = Vector2( 0, 0 )
 0/shapes = [  ]
 0/z_index = 0
-1/name = "player"
+1/name = "1player"
 1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
@@ -29,7 +32,7 @@
 1/navigation_offset = Vector2( 0, 0 )
 1/shapes = [  ]
 1/z_index = 0
-2/name = "chest"
+2/name = "2chest"
 2/texture = ExtResource( 3 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
@@ -39,7 +42,7 @@
 2/navigation_offset = Vector2( 0, 0 )
 2/shapes = [  ]
 2/z_index = 0
-3/name = "floor"
+3/name = "3floor"
 3/texture = ExtResource( 4 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
@@ -49,7 +52,7 @@
 3/navigation_offset = Vector2( 0, 0 )
 3/shapes = [  ]
 3/z_index = 0
-4/name = "wall"
+4/name = "4wall"
 4/texture = ExtResource( 5 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
@@ -59,7 +62,7 @@
 4/navigation_offset = Vector2( 0, 0 )
 4/shapes = [  ]
 4/z_index = 0
-5/name = "door"
+5/name = "5door"
 5/texture = ExtResource( 6 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
@@ -69,7 +72,7 @@
 5/navigation_offset = Vector2( 0, 0 )
 5/shapes = [  ]
 5/z_index = 0
-6/name = "pot"
+6/name = "6pot"
 6/texture = ExtResource( 7 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
@@ -79,3 +82,33 @@
 6/navigation_offset = Vector2( 0, 0 )
 6/shapes = [  ]
 6/z_index = 0
+7/name = "7key"
+7/texture = ExtResource( 8 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 16, 16 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shapes = [  ]
+7/z_index = 0
+8/name = "9lockedDoor"
+8/texture = ExtResource( 9 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 0, 16, 16 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shapes = [  ]
+8/z_index = 0
+9/name = "9openChest"
+9/texture = ExtResource( 10 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 0, 0, 16, 16 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shapes = [  ]
+9/z_index = 0
