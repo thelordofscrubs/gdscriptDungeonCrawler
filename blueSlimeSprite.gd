@@ -1,8 +1,7 @@
 extends Sprite
-class_name charSprite
 
 func _init(coords):
-	self.texture = load("res://charSpriteTexture.tres")
+	self.texture = load("res://blueSlimeSprite.tres")
 	self.set_position(Vector2(32,32)*coords)
 	self.set_centered(false)
 	self.set_scale(Vector2(2,2))
