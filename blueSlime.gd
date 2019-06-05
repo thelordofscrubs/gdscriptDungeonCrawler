@@ -21,6 +21,18 @@ func _init(coord,f,id):
 	self.healthBar = healthBart.new(coordinates, maxHealth, name)
 	self.add_child(healthBar)
 
+func spriteVis(boo):
+	match boo:
+		false:
+			remove_child(sprite)
+			remove_child(healthBar)
+		true:
+			sprite = spritet.new(coordinates)
+			add_child(sprite)
+			healthBar = healthBart.new(coordinates, maxHealth, name)
+			add_child(healthBar)
+			
+
 func changeHealth(amt):
 	health += amt
 	if health > maxHealth:
@@ -36,6 +48,6 @@ func updatePos(change):
 
 func attack(playerCoords):
 	if playerCoords == coordinates:
-		return 5
+		return atk
 	else:
 		return null

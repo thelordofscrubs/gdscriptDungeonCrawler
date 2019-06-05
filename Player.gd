@@ -6,7 +6,6 @@ var weaponMult = 5
 var atkDmg = attackDamageMult * weaponMult
 var money = 0
 var coords
-var pixelMultiplier = Vector2(32,32)
 var spriteClass = preload("res://charSprite.gd")
 var sprite
 var facing = "down"
@@ -55,9 +54,21 @@ func attack():
 			atkCoords = coords + Vector2(0,1)
 	print("attacking coordinates: " + str(atkCoords[0]) +", "+ str(atkCoords[1]))
 	for monster in parentNode.monsterArray:
-		if monster.coordinates == atkCoords:
-			monster.changeHealth(-atkDmg)
-			print("hit monster: "+monster.name+" at coords: " + str(atkCoords[0]) +", "+ str(atkCoords[1]))
+		match monster.coordinates:
+			atkCoords:
+				monster.changeHealth(-atkDmg)
+				print("hit monster: "+monster.name+" at coords: " + str(atkCoords[0]) +", "+ str(atkCoords[1]))
+			coords:
+				monster.changeHealth(-(atkDmg*.5))
+				print("hit monster: "+monster.name+" at coords: " + str(coords[0]) +", "+ str(coords[1]))
+
+func spriteVis(boo):
+	match boo:
+		false:
+			remove_child(sprite)
+		true:
+			sprite = spriteClass.new(coords)
+			add_child(sprite)
 
 func _spriteTimerTO():
 	sprite.set_texture(load("res://charSpriteTexture.tres"))

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var tmscene = preload("res://testleveltm.tscn")
 var tmsetup = preload("res://testMapSetup.tscn")
@@ -9,14 +9,13 @@ var lvlSize = 10
 var player
 var monsterId = 0
 var tileMap
-var healthBar
 var monsterArray = []
 var chestDict = {}
 var keys = {}
 var doors = {}
 
 func _init():
-	self.name = "rootNode"
+	self.name = "map0"
 	#self.healthBar = healthBarScene.instance()
 	#self.add_child(healthBar)
 	self.tileMap = tmscene.instance()
@@ -61,6 +60,19 @@ func _init():
 	#	ts += "\n"
 	#print(ts)	
 
+func setVisibility(boo):
+	match boo:
+		true:
+			set_visible(true)
+			for childNode in get_children():
+				if childNode.has_method("spriteVis"):
+					childNode.spriteVis(true)
+		false:
+			set_visible(false)
+			for childNode in get_children():
+				if childNode.has_method("spriteVis"):
+					childNode.spriteVis(false)
+
 func generateSprite(type, coords):
 	match type:
 		"key":
@@ -82,6 +94,7 @@ func generateChest(contentType, vector):
 
 func _ready():
 	print_tree()
+	print(get_tree())
 
 func testMovement(dir):
 	var currentPos = player.getCoordinates()
@@ -159,5 +172,5 @@ func _process(delta):
 	if Input.is_action_just_released("attack"):
 		player.attack()
 	if Input.is_action_just_released("use"):
-		var a
-
+		pass
+	
