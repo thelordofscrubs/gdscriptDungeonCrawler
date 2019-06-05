@@ -7,6 +7,7 @@ var tmsetup = preload("res://testMapSetup.tscn")
 var coordGrid = []
 var lvlSize = 10
 var player
+var monsterId = 0
 var tileMap
 var healthBar
 var monsterArray = []
@@ -71,8 +72,9 @@ func generateMonster(type,coordinates,facing=0):
 	match type:
 		"blueSlime":
 			var bStemp = load("res://blueSlime.gd")
-			monsterArray.append(bStemp.new(coordinates,facing))
+			monsterArray.append(bStemp.new(coordinates,facing, monsterId))
 			self.add_child(monsterArray[monsterArray.size()-1])
+	monsterId += 1
 
 func generateChest(contentType, vector):
 	var chesttemp = load("res://chest.gd")
@@ -100,25 +102,25 @@ func testMovement(dir):
 			attemptedVec = Vector2(0,1)
 	var attemptedPosV = currentPos + attemptedVec
 	if attemptedPos == "floor":
-		player.updatePos(attemptedVec)
+		player.updatePos(attemptedVec,dir)
 	elif attemptedPos == "door":
 		if doors[attemptedPosV] == true:
 			if player.hasKey == true:
-				player.updatePos(attemptedVec)
+				player.updatePos(attemptedVec,dir)
 				tileMap.set_cellv(attemptedPosV,3)
 				doors[attemptedPosV] = false
 				player.useKey()
 		else:
-			player.updatePos(attemptedVec)
+			player.updatePos(attemptedVec,dir)
 	elif attemptedPos == "chest":
-		player.updatePos(attemptedVec)
+		player.updatePos(attemptedVec,dir)
 		openChest(attemptedPosV)
 		coordGrid[currentPos[0]+attemptedVec[0]][currentPos[1]+attemptedVec[1]] = "openChest"
 		tileMap.set_cellv(attemptedPosV,9)
 	elif attemptedPos == "openChest":
-		player.updatePos(attemptedVec)
+		player.updatePos(attemptedVec,dir)
 	elif attemptedPos == "key":
-		player.updatePos(attemptedVec)
+		player.updatePos(attemptedVec,dir)
 		player.gainKey()
 		coordGrid[currentPos[0]+attemptedVec[0]][currentPos[1]+attemptedVec[1]] = "floor"
 		remove_child(keys[attemptedPosV])
@@ -155,7 +157,7 @@ func _process(delta):
 	if Input.is_action_just_released("down"):
 		testMovement("down")
 	if Input.is_action_just_released("attack"):
-		var a
+		player.attack()
 	if Input.is_action_just_released("use"):
 		var a
 
