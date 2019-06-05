@@ -37,6 +37,9 @@ charSprite="*res://charSprite.gd"
 [display]
 
 window/size/width=600
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+window/stretch/shrink=1.5
 
 [input]
 

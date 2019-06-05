@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Map1.gd" type="Script" id=1]
 [ext_resource path="res://healthBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://blackPixel.png" type="Texture" id=3]
 
 [node name="rootNode" type="Node2D"]
 script = ExtResource( 1 )
@@ -23,3 +24,8 @@ margin_bottom = 40.0
 text = "Money: 0"
 align = 1
 valign = 1
+
+[node name="Background" type="Sprite" parent="."]
+scale = Vector2( 6000, 6000 )
+z_index = -1
+texture = ExtResource( 3 )
