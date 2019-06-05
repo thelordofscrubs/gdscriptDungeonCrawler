@@ -31,7 +31,7 @@ func spriteVis(boo):
 			add_child(sprite)
 			healthBar = healthBart.new(coordinates, maxHealth, name)
 			add_child(healthBar)
-			
+
 
 func changeHealth(amt):
 	health += amt
@@ -45,6 +45,13 @@ func changeHealth(amt):
 func updatePos(change):
 	self.coordinates += change
 	sprite.move(coordinates)
+
+func moveSprites(vec):
+	for child in get_children():
+		if child.is_class("Sprite"):
+			child.set_position(child.position+vec*Vector2(32,32))
+		elif child.is_class("TextureProgress"):
+			child.set_position(child.rect_position+vec*Vector2(32,32))
 
 func attack(playerCoords):
 	if playerCoords == coordinates:

@@ -102,7 +102,7 @@ func setAtk(a):
 func updatePos(vector,dir):
 	self.facing = dir
 	self.coords += vector
-	self.sprite.move(self.coords)
+	#self.sprite.move(self.coords)
 	print("player coordinates are : "+str(self.coords[0])+", "+str(self.coords[1]))
 
 func updateHealthBar():

@@ -1,7 +1,7 @@
 extends Node2D
 
-var tmscene = preload("res://testleveltm.tscn")
-var tmsetup = preload("res://testMapSetup.tscn")
+var tmscene = preload("res://map0TM.tscn")
+var tmsetup = preload("res://map0Setup.tscn")
 #var healthBarScene = preload("res://healthBar.tscn")
 
 var coordGrid = []
@@ -18,8 +18,6 @@ func _init():
 	self.name = "map0"
 	#self.healthBar = healthBarScene.instance()
 	#self.add_child(healthBar)
-	self.tileMap = tmscene.instance()
-	self.add_child(self.tileMap)
 	#print_tree()
 	self.lvlSize = 10
 	print("size of level: ", self.lvlSize)
@@ -53,12 +51,18 @@ func _init():
 	#var Player = preload("res://Player.gd")
 	self.player = Player.new(initPlayerCoords)
 	self.add_child(player)
+	self.tileMap = tmscene.instance()
+	tileMap.setStartingPos(initPlayerCoords)
+	self.add_child(self.tileMap)
 	#var ts = ""
 	#for x in range(10):
 	#	for y in range(10):
 	#		ts += coordGrid[x][y]
 	#	ts += "\n"
 	#print(ts)	
+	#var centerPixel = (initPlayerCoords+Vector2(8,8))*Vector2(32,32)
+	#var centerOfScreen = OS.window_size/Vector2(2,2)
+	#position = centerOfScreen-centerPixel
 
 func setVisibility(boo):
 	match boo:
@@ -96,6 +100,13 @@ func _ready():
 	print_tree()
 	print(get_tree())
 
+func moveScene(newVec):
+	tileMap.move(Vector2(-1,-1)*newVec)
+	for monster in monsterArray:
+		monster.moveSprites(Vector2(-1,-1)*newVec)
+	for key in keys.values():
+		key.move(Vector2(-1,-1)*newVec)
+
 func testMovement(dir):
 	var currentPos = player.getCoordinates()
 	var attemptedPos
@@ -116,24 +127,30 @@ func testMovement(dir):
 	var attemptedPosV = currentPos + attemptedVec
 	if attemptedPos == "floor":
 		player.updatePos(attemptedVec,dir)
+		moveScene(attemptedVec)
 	elif attemptedPos == "door":
 		if doors[attemptedPosV] == true:
 			if player.hasKey == true:
 				player.updatePos(attemptedVec,dir)
+				moveScene(attemptedVec)
 				tileMap.set_cellv(attemptedPosV,3)
 				doors[attemptedPosV] = false
 				player.useKey()
 		else:
 			player.updatePos(attemptedVec,dir)
+			moveScene(attemptedVec)
 	elif attemptedPos == "chest":
 		player.updatePos(attemptedVec,dir)
+		moveScene(attemptedVec)
 		openChest(attemptedPosV)
 		coordGrid[currentPos[0]+attemptedVec[0]][currentPos[1]+attemptedVec[1]] = "openChest"
 		tileMap.set_cellv(attemptedPosV,9)
 	elif attemptedPos == "openChest":
 		player.updatePos(attemptedVec,dir)
+		moveScene(attemptedVec)
 	elif attemptedPos == "key":
 		player.updatePos(attemptedVec,dir)
+		moveScene(attemptedVec)
 		player.gainKey()
 		coordGrid[currentPos[0]+attemptedVec[0]][currentPos[1]+attemptedVec[1]] = "floor"
 		remove_child(keys[attemptedPosV])

@@ -5,6 +5,9 @@ var isPaused = false
 var menuScene = preload("res://menu.tscn")
 var pauseMenu
 
+func _init():
+	OS.set_window_maximized(true)
+
 func setLevelActive(s):
 	levelActive = s
 
